@@ -42,7 +42,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         - Mobile/Tablet Landscape (< lg): mt-0, ml-20 (Rail width 80px)
         - Desktop (lg+): mt-0, ml-[320px] (Sidebar width)
       */}
-      <main className="flex-1 mt-16 lg:mt-0 landscape:mt-0 lg:ml-[320px] landscape:ml-20 lg:landscape:ml-[320px] relative transition-all duration-300">
+      <main className="w-full pt-16 lg:pt-0 landscape:pt-0 lg:pl-[320px] landscape:pl-20 lg:landscape:pl-[320px] relative transition-all duration-300">
         {children}
       </main>
     </div>

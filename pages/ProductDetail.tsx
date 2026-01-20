@@ -19,6 +19,8 @@ export const ProductDetail: React.FC = () => {
   }
 
   const productImages = product.images ?? [product.image];
+  const baseUrl = import.meta.env.BASE_URL;
+  const resolveAsset = (path: string) => `${baseUrl}${path.replace(/^\/+/, '')}`;
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.style.display = 'none';
@@ -29,12 +31,12 @@ export const ProductDetail: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
         
         {/* Coluna de Imagens (Scrollable) */}
-        <div className="md:col-span-1 order-2 md:order-1">
-          <div className="flex flex-col">
+        <div className="md:col-span-1 order-2 md:order-1 bg-white pb-8">
+          <div className="flex flex-col gap-4">
             {productImages.map((img, index) => (
               <motion.img
                 key={index}
-                src={img}
+                src={resolveAsset(img)}
                 alt={`${product.name} - view ${index + 1}`}
                 className="w-full object-cover"
                 onError={handleImageError}
@@ -102,7 +104,7 @@ export const ProductDetail: React.FC = () => {
               >
                 <div className="aspect-[4/5] overflow-hidden bg-smoke">
                   <img
-                    src={p.image}
+                    src={resolveAsset(p.image)}
                     alt={p.name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                     onError={handleImageError}

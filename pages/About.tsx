@@ -63,17 +63,78 @@ export const About: React.FC = () => {
         <section className="w-full h-[60vh] md:h-[80vh] border-b border-lines overflow-hidden group relative">
            <div className="absolute top-0 left-0 p-8 z-10">
               <span className="bg-white px-3 py-1 font-mono text-[10px] uppercase tracking-widest border border-lines">
-                Florianópolis, SC
+                Florianopolis, SC
               </span>
            </div>
            <img 
-             src={ASSETS.ABOUT} 
-             alt="Equipe Coletivo Pilates" 
+             src="/hero/coletivo-pilates-hero-equipe-descontraida.avif"
+             alt="Equipe Coletivo Pilates"
              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s] ease-in-out scale-105 group-hover:scale-100"
            />
         </section>
 
-        {/* 4. PILARES (3 COLUMNS SWISS GRID) */}
+        {/* 4. PROFESSORES */}
+        <section className="border-b border-lines">
+          <div className="p-8 md:p-16 border-b border-lines">
+            <Reveal>
+              <span className="font-mono text-xs text-brand-orange uppercase tracking-[0.2em] block mb-4">
+                (02) — Professores
+              </span>
+              <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-tighter uppercase leading-tight text-black">
+                Equipe<br/>Coletivo
+              </h2>
+            </Reveal>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-5 border-b border-lines">
+            {[
+              {
+                name: "Priscila Wiggers",
+                role: "Direcao Tecnica",
+                image: "/Equipe/coletivo-pilates-equipe-priscila-wiggers.avif"
+              },
+              {
+                name: "Pamela Hilleschein",
+                role: "Instrutora",
+                image: "/Equipe/coletivo-pilates-equipe-pamela-hilleschein.avif"
+              },
+              {
+                name: "Cristina",
+                role: "Instrutora",
+                image: "/Equipe/coletivo-pilates-equipe-cristina.avif"
+              },
+              {
+                name: "Guilherme Rocha",
+                role: "Instrutor",
+                image: "/Equipe/coletivo-pilates-equipe-guilherme-rocha.avif"
+              },
+              {
+                name: "Ana Leticia Bueno",
+                role: "Instrutora",
+                image: "/Equipe/coletivo-pilates-equipe-ana-leticia-bueno.avif"
+              }
+            ].map((member, idx) => (
+              <div key={idx} className="group border-b md:border-b-0 md:border-r border-lines last:border-r-0">
+                <div className="aspect-[4/5] overflow-hidden bg-smoke">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+                <div className="p-6 md:p-8 border-t border-lines">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-gray-400 block mb-2">
+                    {member.role}
+                  </span>
+                  <h3 className="font-sans text-2xl font-bold">
+                    {member.name}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 5. PILARES (3 COLUMNS SWISS GRID) */}
         <section className="grid grid-cols-1 md:grid-cols-3 border-b border-lines">
            {[
              { 
@@ -106,7 +167,7 @@ export const About: React.FC = () => {
            ))}
         </section>
 
-        {/* 5. DADOS TÉCNICOS / RODAPÉ DA PÁGINA */}
+        {/* 6. DADOS TÉCNICOS / RODAPÉ DA PÁGINA */}
         <section className="bg-black text-white p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-12">
            <div className="flex flex-col justify-between">
               <div>

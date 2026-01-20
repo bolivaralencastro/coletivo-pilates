@@ -16,6 +16,9 @@ const Reveal: React.FC<{ children: React.ReactNode; className?: string; delay?: 
 );
 
 export const Classes: React.FC = () => {
+  const baseUrl = import.meta.env.BASE_URL;
+  const resolveAsset = (path: string) => `${baseUrl}${path.replace(/^\/+/, '')}`;
+
   return (
     <PageTransition>
       <div className="flex flex-col min-h-screen bg-white">
@@ -106,7 +109,7 @@ export const Classes: React.FC = () => {
            </div>
            <div className="relative min-h-[400px] lg:min-h-full group overflow-hidden">
               <img 
-                src={ASSETS.ACADEMY_GALLERY[0]}
+                src={resolveAsset(ASSETS.ACADEMY_GALLERY[0])}
                 alt="Detalhe Equipamento Pilates Oficial" 
                 className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale"
               />

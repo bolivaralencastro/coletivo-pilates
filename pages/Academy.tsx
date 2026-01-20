@@ -16,6 +16,9 @@ const ScrollReveal: React.FC<{ children: React.ReactNode; className?: string }> 
 );
 
 export const Academy: React.FC = () => {
+  const baseUrl = import.meta.env.BASE_URL;
+  const resolveAsset = (path: string) => `${baseUrl}${path.replace(/^\/+/, '')}`;
+
   return (
     <PageTransition className="bg-zinc-900 text-zinc-300 min-h-screen font-sans selection:bg-brand-orange selection:text-white">
       
@@ -23,7 +26,7 @@ export const Academy: React.FC = () => {
       <section className="relative min-h-[80vh] flex flex-col justify-end p-8 md:p-20 border-b border-zinc-800 overflow-hidden">
          <div className="absolute inset-0 opacity-20 pointer-events-none">
             <img 
-              src={ASSETS.ACADEMY} 
+              src={resolveAsset(ASSETS.ACADEMY)} 
               alt="Background Texture" 
               className="w-full h-full object-cover grayscale"
             />
@@ -98,7 +101,7 @@ export const Academy: React.FC = () => {
       <section className="w-full border-b border-zinc-800">
          <div className="relative w-full aspect-video overflow-hidden group">
             <img
-              src={ASSETS.ACADEMY_GALLERY[2]}
+              src={resolveAsset(ASSETS.ACADEMY_GALLERY[2])}
               alt="Academy highlight"
               className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700"
             />
@@ -148,7 +151,7 @@ export const Academy: React.FC = () => {
                className="relative group overflow-hidden border-r border-zinc-800 last:border-r-0"
             >
                <img 
-                  src={src} 
+                  src={resolveAsset(src)} 
                   alt={`Academy ${idx}`} 
                   className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700"
                />

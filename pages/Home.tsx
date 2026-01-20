@@ -19,14 +19,16 @@ const ScrollSection: React.FC<{ children: React.ReactNode; className?: string }>
 
 export const Home: React.FC = () => {
   const shopImages = [
-    "/products/the-springs-are-calling-me/the-springs-are-calling-me-01-mockup.png",
-    "/products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-01-mockup.png",
-    "/products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-01-mockup.png",
-    "/products/tainha-from-floripa/tainhas-from-floripa-01-mockup.png",
-    "/products/meias/meias-coletivo-pilates-humanizada.png",
-    "/products/tote-bag/tote-bag-coletivo-pilates-humanizada.png",
+    "products/the-springs-are-calling-me/the-springs-are-calling-me-01-mockup.png",
+    "products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-01-mockup.png",
+    "products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-01-mockup.png",
+    "products/tainha-from-floripa/tainhas-from-floripa-01-mockup.png",
+    "products/meias/meias-coletivo-pilates-humanizada.png",
+    "products/tote-bag/tote-bag-coletivo-pilates-humanizada.png",
   ];
   const [activeShopImage, setActiveShopImage] = React.useState(0);
+  const baseUrl = import.meta.env.BASE_URL;
+  const resolveAsset = (path: string) => `${baseUrl}${path.replace(/^\/+/, '')}`;
 
   React.useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -40,7 +42,7 @@ export const Home: React.FC = () => {
       
       {/* 1. HERO + MANIFESTO (2/3 + 1/3 vertical split, full viewport height) */}
       <section className="flex flex-col min-h-screen border-b border-lines">
-        <div className="relative w-full h-[66vh] md:h-[66vh] border-b border-lines group overflow-hidden">
+        <div className="relative w-full aspect-[3/2] landscape:aspect-[21/9] md:h-[66vh] border-b border-lines group overflow-hidden">
           <img 
             src={ASSETS.HERO} 
             alt="Pilates Studio Hero" 
@@ -49,9 +51,9 @@ export const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </div>
 
-        <ScrollSection className="p-8 md:p-10 flex flex-col justify-between bg-white h-[34vh] md:h-[34vh]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
-            <div className="flex flex-col border-b md:border-b-0 md:border-r border-lines pb-6 md:pb-0 md:pr-8">
+        <ScrollSection className="p-8 md:p-10 flex flex-col justify-between bg-white h-auto lg:h-[34vh]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 divide-y divide-lines md:divide-y-0 md:divide-x">
+            <div className="flex flex-col pb-6 md:pb-0 md:pr-8">
               <motion.span 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -67,14 +69,14 @@ export const Home: React.FC = () => {
                 Começar agora
               </Link>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col pt-6 md:pt-0 md:pl-8">
               <span className="font-mono text-xs text-gray-400 block tracking-widest uppercase">
                 01 — O Coletivo
               </span>
               <p className="font-serif text-xl md:text-2xl text-gray-600 leading-relaxed italic mt-6">
                 "Não é apenas sobre fazer o exercício.<br/>É sobre <span className="text-black font-normal border-b-2 border-brand-orange">como você faz</span>."
               </p>
-              <div className="mt-auto flex items-center justify-between gap-4 pt-8">
+              <div className="mt-8 md:mt-auto flex items-center justify-between gap-4 pt-8">
                 <Link to="/sobre" className="font-mono text-xs uppercase border-b border-black pb-1 hover:text-brand-orange hover:border-brand-orange transition-colors">
                   Ler Manifesto Completo
                 </Link>
@@ -88,15 +90,22 @@ export const Home: React.FC = () => {
       {/* 3. CLASSES & METHOD (Services) */}
       <ScrollSection className="grid grid-cols-1 landscape:grid-cols-3 md:grid-cols-3 border-b border-lines">
          {[
-           { title: "Privado", sub: "1:1 Individual", desc: "Foco absoluto na sua necessidade.", link: "/aulas" },
-           { title: "Grupo", sub: "1:4 Coletivo", desc: "Dinâmica fluida e energia compartilhada.", link: "/aulas" },
-           { title: "Mentoria", sub: "Profissional", desc: "Para instrutores que buscam excelência.", link: "/aulas" }
+           { title: "Privado", sub: "1:1 Individual", desc: "Foco absoluto na sua necessidade.", link: "/aulas", image: "aulas/coletivo-pilates-aulas-1.avif" },
+           { title: "Grupo", sub: "1:4 Coletivo", desc: "Dinâmica fluida e energia compartilhada.", link: "/aulas", image: "aulas/coletivo-pilates-aulas-4.avif" },
+           { title: "Mentoria", sub: "Profissional", desc: "Para instrutores que buscam excelência.", link: "/aulas", image: "aulas/coletivo-pilates-aulas-7.avif" }
          ].map((item, idx) => (
            <Link 
             to={item.link} 
             key={idx} 
-            className="group p-12 border-b md:border-b-0 landscape:border-b-0 md:border-r landscape:border-r border-lines last:border-r-0 hover:bg-smoke transition-colors flex flex-col justify-between h-64 md:h-80"
+            className="group p-12 border-b md:border-b-0 landscape:border-b-0 md:border-r landscape:border-r border-lines last:border-r-0 hover:bg-smoke transition-colors flex flex-col justify-between"
            >
+              <div className="w-full aspect-[3/4] overflow-hidden bg-smoke mb-8">
+                <img
+                  src={resolveAsset(item.image)}
+                  alt={item.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
+              </div>
               <div className="flex justify-between items-start">
                  <span className="font-mono text-xs text-brand-orange uppercase">02.{idx + 1}</span>
                  <span className="material-icons opacity-0 group-hover:opacity-100 transition-opacity text-2xl">north_east</span>
@@ -148,7 +157,7 @@ export const Home: React.FC = () => {
                  <AnimatePresence mode="sync">
                    <motion.img
                      key={shopImages[activeShopImage]}
-                     src={shopImages[activeShopImage]}
+                     src={resolveAsset(shopImages[activeShopImage])}
                      alt="Produto em destaque"
                      className="absolute inset-0 w-full h-full object-cover"
                      initial={{ opacity: 0 }}

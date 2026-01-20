@@ -13,12 +13,12 @@ export const PRODUCTS = [
     subtitle: "Are Calling Me",
     price: "R$ 149,00",
     description: "A força das molas e a resistência do corpo. Ilustração técnica detalhada das molas do Cadillac.",
-    image: "/products/the-springs-are-calling-me/the-springs-are-calling-me-01-mockup.png",
+    image: "products/the-springs-are-calling-me/the-springs-are-calling-me-01-mockup.png",
     images: [
-      "/products/the-springs-are-calling-me/the-springs-are-calling-me-01-mockup.png",
-      "/products/the-springs-are-calling-me/the-springs-are-calling-me-03-arte-preto-e-branco.png",
-      "/products/the-springs-are-calling-me/the-springs-are-calling-me-04-frente.png",
-      "/products/the-springs-are-calling-me/the-springs-are-calling-me-05-croqui.png"
+      "products/the-springs-are-calling-me/the-springs-are-calling-me-01-mockup.png",
+      "products/the-springs-are-calling-me/the-springs-are-calling-me-03-arte-preto-e-branco.png",
+      "products/the-springs-are-calling-me/the-springs-are-calling-me-04-frente.png",
+      "products/the-springs-are-calling-me/the-springs-are-calling-me-05-croqui.png"
     ],
     tag: "Best Seller"
   },
@@ -28,12 +28,12 @@ export const PRODUCTS = [
     subtitle: "Un Cadillac",
     price: "R$ 149,00",
     description: "Homenagem surrealista a Magritte. O equipamento não é o método, é apenas a ferramenta.",
-    image: "/products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-01-mockup.png",
+    image: "products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-01-mockup.png",
     images: [
-      "/products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-01-mockup.png",
-      "/products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-02-arte-cor.png",
-      "/products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-04-frente.png",
-      "/products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-05-croqui.png"
+      "products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-01-mockup.png",
+      "products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-02-arte-cor.png",
+      "products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-04-frente.png",
+      "products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-05-croqui.png"
     ],
     tag: "Concept"
   },
@@ -43,12 +43,12 @@ export const PRODUCTS = [
     subtitle: "Of The Pilates Life",
     price: "R$ 149,00",
     description: "O inventário completo do sistema. Reformer, Wunda, Barrel e a arquitetura do movimento.",
-    image: "/products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-01-mockup.png",
+    image: "products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-01-mockup.png",
     images: [
-      "/products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-01-mockup.png",
-      "/products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-02-arte-cor.png",
-      "/products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-04-frente.png",
-      "/products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-05-croqui.png"
+      "products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-01-mockup.png",
+      "products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-02-arte-cor.png",
+      "products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-04-frente.png",
+      "products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-05-croqui.png"
     ],
     tag: "Collection"
   },
@@ -58,12 +58,12 @@ export const PRODUCTS = [
     subtitle: "From Floripa",
     price: "R$ 149,00",
     description: "Hundred from Pilates vs Tainhas from Floripa. A conexão entre a natureza da ilha e o ritmo do mat.",
-    image: "/products/tainha-from-floripa/tainhas-from-floripa-01-mockup.png",
+    image: "products/tainha-from-floripa/tainhas-from-floripa-01-mockup.png",
     images: [
-      "/products/tainha-from-floripa/tainhas-from-floripa-01-mockup.png",
-      "/products/tainha-from-floripa/tainha-from-floripa-01-arte-cor.png",
-      "/products/tainha-from-floripa/tainha-from-floripa-03-frente.png",
-      "/products/tainha-from-floripa/tainha-from-floripa-04-croqui.png"
+      "products/tainha-from-floripa/tainhas-from-floripa-01-mockup.png",
+      "products/tainha-from-floripa/tainha-from-floripa-01-arte-cor.png",
+      "products/tainha-from-floripa/tainha-from-floripa-03-frente.png",
+      "products/tainha-from-floripa/tainha-from-floripa-04-croqui.png"
     ],
     tag: "Local Hero"
   },
@@ -73,10 +73,10 @@ export const PRODUCTS = [
     subtitle: "Essencial",
     price: "R$ 89,00",
     description: "Meias antiderrapantes para estabilidade e precisão em cada movimento.",
-    image: "/products/meias/meias-coletivo-pilates-humanizada.png",
+    image: "products/meias/meias-coletivo-pilates-humanizada.png",
     images: [
-      "/products/meias/meias-coletivo-pilates-humanizada.png",
-      "/products/meias/meias-coletivo-pilates.png"
+      "products/meias/meias-coletivo-pilates-humanizada.png",
+      "products/meias/meias-coletivo-pilates.png"
     ],
     tag: "Acessório"
   },
@@ -86,16 +86,19 @@ export const PRODUCTS = [
     subtitle: "Canvas 100% Algodao",
     price: "R$ 129,00",
     description: "Bolsa ampla em canvas para acompanhar o studio e o dia a dia.",
-    image: "/products/tote-bag/tote-bag-coletivo-pilates-humanizada.png",
+    image: "products/tote-bag/tote-bag-coletivo-pilates-humanizada.png",
     images: [
-      "/products/tote-bag/tote-bag-coletivo-pilates-humanizada.png",
-      "/products/tote-bag/tote_bag_branca_coletivo_pilates.png"
+      "products/tote-bag/tote-bag-coletivo-pilates-humanizada.png",
+      "products/tote-bag/tote_bag_branca_coletivo_pilates.png"
     ],
     tag: "Acessório"
   }
 ];
 
 export const Shop: React.FC = () => {
+  const baseUrl = import.meta.env.BASE_URL;
+  const resolveAsset = (path: string) => `${baseUrl}${path.replace(/^\/+/, '')}`;
+
   // Função helper para tratar erro de imagem
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
@@ -141,8 +144,8 @@ export const Shop: React.FC = () => {
                       </span>
                     </div>
                     <img 
-                      src={product.image} 
-                      alt={product.name}
+                    src={resolveAsset(product.image)} 
+                    alt={product.name}
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105"
                       onError={handleImageError}
                     />
@@ -170,25 +173,24 @@ export const Shop: React.FC = () => {
                         <span>•</span>
                         <span>P-GG</span>
                       </div>
+                      {product.id !== 'tote-bag' ? (
+                        <a 
+                          href="https://app.tecnofit.com.br/ng/online-sale/MTU1MTU/checkout/MTA5NzY1Mg/forms"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-brand-orange hover:text-black transition-colors"
+                        >
+                          Comprar
+                          <span className="material-icons md-18">local_mall</span>
+                        </a>
+                      ) : (
+                        <span className="font-mono text-xs uppercase tracking-widest text-gray-400">
+                          Em Breve
+                        </span>
+                      )}
                     </div>
                  </div>
                </Link>
-               <div className="px-8 pb-8">
-                 {product.id !== 'tote-bag' ? (
-                   <a 
-                     href="https://app.tecnofit.com.br/ng/online-sale/MTU1MTU/checkout/MTA5NzY1Mg/forms"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="inline-block bg-black text-white px-4 py-2 font-mono text-xs uppercase tracking-widest hover:bg-brand-orange transition-colors duration-300"
-                   >
-                     Comprar Agora
-                   </a>
-                 ) : (
-                   <span className="inline-block bg-gray-200 text-gray-600 px-4 py-2 font-mono text-xs uppercase tracking-widest">
-                     Em Breve
-                   </span>
-                 )}
-               </div>
             </div>
           ))}
         </section>
