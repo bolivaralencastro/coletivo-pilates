@@ -16,6 +16,9 @@ const Reveal: React.FC<{ children: React.ReactNode; className?: string; delay?: 
 );
 
 export const About: React.FC = () => {
+  const baseUrl = import.meta.env.BASE_URL;
+  const resolveAsset = (path: string) => `${baseUrl}${path.replace(/^\/+/, '')}`;
+
   return (
     <PageTransition>
       <div className="flex flex-col min-h-screen bg-white">
@@ -67,7 +70,7 @@ export const About: React.FC = () => {
               </span>
            </div>
            <img 
-             src="/hero/coletivo-pilates-hero-equipe-descontraida.avif"
+             src={resolveAsset("/hero/coletivo-pilates-hero-equipe-descontraida.avif")}
              alt="Equipe Coletivo Pilates"
              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s] ease-in-out scale-105 group-hover:scale-100"
            />
@@ -116,7 +119,7 @@ export const About: React.FC = () => {
               <div key={idx} className="group border-b md:border-b-0 md:border-r border-lines last:border-r-0">
                 <div className="aspect-[4/5] overflow-hidden bg-smoke">
                   <img
-                    src={member.image}
+                    src={resolveAsset(member.image)}
                     alt={member.name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                   />

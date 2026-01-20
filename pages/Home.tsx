@@ -44,7 +44,7 @@ export const Home: React.FC = () => {
       <section className="flex flex-col min-h-screen border-b border-lines">
         <div className="relative w-full aspect-[3/2] landscape:aspect-[21/9] md:h-[66vh] border-b border-lines group overflow-hidden">
           <img 
-            src={ASSETS.HERO} 
+            src={resolveAsset(ASSETS.HERO)} 
             alt="Pilates Studio Hero" 
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s] ease-in-out scale-105 group-hover:scale-100"
           />
