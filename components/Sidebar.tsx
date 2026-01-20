@@ -65,7 +65,7 @@ export const Sidebar: React.FC = () => {
             href="https://wa.me/5548999770808" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="block w-full py-3 bg-black text-white text-center font-mono text-xs uppercase hover:bg-brand-orange transition-colors duration-300 group"
+            className="block w-full py-3 bg-brand-orange text-white text-center font-mono text-xs uppercase hover:bg-black transition-colors duration-300 group"
           >
             Agendar Visita
           </a>

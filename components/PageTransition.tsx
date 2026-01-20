@@ -4,6 +4,7 @@ import { motion, Variants } from 'framer-motion';
 interface PageTransitionProps {
   children: React.ReactNode;
   className?: string;
+  disableTransform?: boolean;
 }
 
 const pageVariants: Variants = {
@@ -32,10 +33,34 @@ const pageVariants: Variants = {
   },
 };
 
-export const PageTransition: React.FC<PageTransitionProps> = ({ children, className = "" }) => {
+const pageVariantsNoTransform: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.4,
+      ease: 'easeIn',
+    },
+  },
+};
+
+export const PageTransition: React.FC<PageTransitionProps> = ({
+  children,
+  className = "",
+  disableTransform = false,
+}) => {
   return (
     <motion.div
-      variants={pageVariants}
+      variants={disableTransform ? pageVariantsNoTransform : pageVariants}
       initial="initial"
       animate="animate"
       exit="exit"

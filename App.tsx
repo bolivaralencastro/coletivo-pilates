@@ -9,9 +9,14 @@ import { Journal } from './pages/Journal';
 import { BlogPost } from './pages/BlogPost';
 import { Classes } from './pages/Classes';
 import { Shop } from './pages/Shop';
+import { ProductDetail } from './pages/ProductDetail';
 
 const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname]);
 
   return (
     <AnimatePresence mode="wait">
@@ -23,6 +28,7 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/journal/:id" element={<BlogPost />} />
         <Route path="/aulas" element={<Classes />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<ProductDetail />} />
       </Routes>
     </AnimatePresence>
   );

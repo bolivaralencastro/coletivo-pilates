@@ -39,7 +39,7 @@ export const About: React.FC = () => {
           <div className="md:col-span-4 p-8 md:p-16 border-b md:border-b-0 md:border-r border-lines flex flex-col justify-between h-full bg-smoke/50">
              <Reveal>
                <h3 className="font-mono text-xs uppercase text-gray-400 mb-8">Nossa Filosofia</h3>
-               <p className="font-sans text-2xl md:text-3xl font-medium leading-tight mb-8">
+               <p className="font-serif text-xl md:text-2xl text-gray-600 leading-relaxed italic mb-8">
                  "Respeito à história de cada corpo através do método original."
                </p>
                <div className="w-12 h-1 bg-brand-orange"></div>

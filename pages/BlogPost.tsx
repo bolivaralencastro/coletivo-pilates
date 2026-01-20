@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { PageTransition } from '../components/PageTransition';
-import { BLOG_POSTS } from '../constants';
+import { ASSETS, BLOG_POSTS } from '../constants';
 
 export const BlogPost: React.FC = () => {
   const { id } = useParams();
@@ -25,9 +25,17 @@ export const BlogPost: React.FC = () => {
   }
 
   const nextPost = BLOG_POSTS.find(p => p.id === post.id + 1) || BLOG_POSTS[0];
+  const blogGalleryImages = [
+    ASSETS.ACADEMY_GALLERY[0],
+    ASSETS.ACADEMY_GALLERY[1],
+    ASSETS.ACADEMY_GALLERY[2],
+    ASSETS.ACADEMY_GALLERY[3],
+    ASSETS.ABOUT,
+    ASSETS.HERO,
+  ];
 
   return (
-    <PageTransition>
+    <PageTransition disableTransform>
       <article className="min-h-screen bg-white">
         
         {/* HEADER: Matches Sidebar Logo Area Height (~336px calculated from logo aspect ratio + padding) */}
@@ -76,10 +84,7 @@ export const BlogPost: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12">
            
            {/* Sidebar (Sticky Share) */}
-           <aside className="lg:col-span-3 p-8 border-b lg:border-b-0 lg:border-r border-lines lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col lg:justify-between">
-              <div className="hidden lg:block">
-                 {/* Espaço vazio para alinhar visualmente ou adicionar índice futuro */}
-              </div>
+           <aside className="lg:col-span-3 p-8 border-b lg:border-b-0 lg:border-r border-lines lg:sticky lg:top-0 lg:h-screen">
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-widest text-gray-400 mb-4">Compartilhar</p>
                 <div className="flex flex-col gap-3 font-mono text-xs">
@@ -98,7 +103,47 @@ export const BlogPost: React.FC = () => {
               
               <div className="prose prose-lg prose-zinc font-serif text-gray-600 leading-loose max-w-none">
                 {post.content.map((paragraph, index) => (
-                  <p key={index} className="mb-8 text-lg">{paragraph}</p>
+                  <React.Fragment key={index}>
+                    <p className="mb-8 text-lg">{paragraph}</p>
+
+                    {index === 0 && (
+                      <figure className="mt-12 mb-12">
+                        <img
+                          src={ASSETS.ABOUT}
+                          alt="Coletivo Pilates studio"
+                          className="w-full h-64 md:h-80 object-cover"
+                        />
+                        <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-widest text-gray-400">
+                          Estudio Coletivo Pilates
+                        </figcaption>
+                      </figure>
+                    )}
+
+                    {index === 1 && (
+                      <div className="mt-12 mb-12 -mx-8 md:-mx-20">
+                        <img
+                          src={ASSETS.ACADEMY_GALLERY[2]}
+                          alt="Treino em grupo"
+                          className="w-full h-72 md:h-[60vh] object-cover"
+                        />
+                      </div>
+                    )}
+
+                    {index === 2 && (
+                      <section className="mt-12 mb-12 -mx-8 md:-mx-20 border-t border-b border-lines bg-gray-50">
+                        <div className="p-8 md:p-16 columns-2 md:columns-3 gap-4">
+                          {blogGalleryImages.map((src, galleryIndex) => (
+                            <img
+                              key={`${src}-${galleryIndex}`}
+                              src={src}
+                              alt={`Galeria Coletivo Pilates ${galleryIndex + 1}`}
+                              className="mb-4 w-full break-inside-avoid object-cover"
+                            />
+                          ))}
+                        </div>
+                      </section>
+                    )}
+                  </React.Fragment>
                 ))}
               </div>
 

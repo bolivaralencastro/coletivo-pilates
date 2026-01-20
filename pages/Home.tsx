@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { PageTransition } from '../components/PageTransition';
-import { ASSETS } from '../constants';
+import { ASSETS, BLOG_POSTS } from '../constants';
 
 // Componente auxiliar para animação de scroll
 const ScrollSection: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => (
@@ -18,67 +18,72 @@ const ScrollSection: React.FC<{ children: React.ReactNode; className?: string }>
 );
 
 export const Home: React.FC = () => {
+  const shopImages = [
+    "/products/the-springs-are-calling-me/the-springs-are-calling-me-01-mockup.png",
+    "/products/ceci-nest-pas-une-cadillac/ceci-nest-pas-une-cadillac-01-mockup.png",
+    "/products/portraits-of-the-pilates-life/portraits-of-the-pilates-life-01-mockup.png",
+    "/products/tainha-from-floripa/tainhas-from-floripa-01-mockup.png",
+    "/products/meias/meias-coletivo-pilates-humanizada.png",
+    "/products/tote-bag/tote-bag-coletivo-pilates-humanizada.png",
+  ];
+  const [activeShopImage, setActiveShopImage] = React.useState(0);
+
+  React.useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveShopImage((current) => (current + 1) % shopImages.length);
+    }, 6000);
+    return () => window.clearInterval(intervalId);
+  }, [shopImages.length]);
+
   return (
     <PageTransition className="flex flex-col w-full overflow-hidden">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full aspect-[4/5] landscape:aspect-[21/9] md:aspect-[21/9] border-b border-lines group overflow-hidden">
-        <img 
-          src={ASSETS.HERO} 
-          alt="Pilates Studio Hero" 
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s] ease-in-out scale-105 group-hover:scale-100"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        
-        <div className="absolute bottom-0 left-0 p-8 landscape:p-8 md:p-16 w-full flex flex-col md:flex-row landscape:flex-row justify-between items-end">
-          <div>
-            <motion.span 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-              className="inline-block bg-brand-orange text-white font-mono text-xs px-2 py-1 mb-4 uppercase tracking-widest"
-            >
-              Florianópolis — SC
-            </motion.span>
-            <h1 className="text-white font-sans text-5xl landscape:text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-[0.9]">
-              Movimento<br />Consciente.
-            </h1>
-          </div>
-          
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-8 md:mt-0 landscape:mt-0 landscape:mb-2"
-          >
-             <Link to="/aulas" className="group relative inline-flex items-center gap-4 text-white font-mono text-xs uppercase tracking-widest border border-white/30 px-6 py-4 hover:bg-white hover:text-black transition-colors">
-                <span>Começar Agora</span>
-                <span className="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
-             </Link>
-          </motion.div>
+      {/* 1. HERO + MANIFESTO (2/3 + 1/3 vertical split, full viewport height) */}
+      <section className="flex flex-col min-h-screen border-b border-lines">
+        <div className="relative w-full h-[66vh] md:h-[66vh] border-b border-lines group overflow-hidden">
+          <img 
+            src={ASSETS.HERO} 
+            alt="Pilates Studio Hero" 
+            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s] ease-in-out scale-105 group-hover:scale-100"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </div>
-      </section>
 
-      {/* 2. MANIFESTO SUMMARY (About) */}
-      <ScrollSection className="grid grid-cols-1 md:grid-cols-12 border-b border-lines min-h-[50vh]">
-        <div className="md:col-span-5 lg:col-span-4 p-8 md:p-16 border-b md:border-b-0 md:border-r border-lines flex flex-col justify-between">
-          <span className="font-mono text-xs text-gray-400 block tracking-widest uppercase">01 — O Coletivo</span>
-          <h2 className="text-4xl md:text-5xl font-sans font-light leading-tight mt-8 md:mt-0">
-            A arquitetura<br/>do corpo.
-          </h2>
-        </div>
-        <div className="md:col-span-7 lg:col-span-8 p-8 md:p-16 flex flex-col justify-center bg-white">
-           <p className="font-serif text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl">
-             "Não é apenas sobre fazer o exercício. É sobre <span className="text-black font-normal border-b-2 border-brand-orange">como você faz</span>."
-           </p>
-           <div className="mt-12 flex items-center gap-8">
-              <Link to="/sobre" className="font-mono text-xs uppercase border-b border-black pb-1 hover:text-brand-orange hover:border-brand-orange transition-colors">
-                Ler Manifesto Completo
+        <ScrollSection className="p-8 md:p-10 flex flex-col justify-between bg-white h-[34vh] md:h-[34vh]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+            <div className="flex flex-col border-b md:border-b-0 md:border-r border-lines pb-6 md:pb-0 md:pr-8">
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                className="inline-block text-gray-400 font-mono text-xs uppercase tracking-widest"
+              >
+                Florianópolis — SC
+              </motion.span>
+              <h2 className="text-5xl md:text-6xl font-sans font-light leading-tight mt-6">
+                Movimento<br/>Consciente.
+              </h2>
+              <Link to="/aulas" className="mt-6 font-mono text-xs uppercase border-b border-black pb-1 hover:text-brand-orange hover:border-brand-orange transition-colors w-fit">
+                Começar agora
               </Link>
-              <span className="font-mono text-xs text-gray-400">EST. 2017</span>
-           </div>
-        </div>
-      </ScrollSection>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-mono text-xs text-gray-400 block tracking-widest uppercase">
+                01 — O Coletivo
+              </span>
+              <p className="font-serif text-xl md:text-2xl text-gray-600 leading-relaxed italic mt-6">
+                "Não é apenas sobre fazer o exercício.<br/>É sobre <span className="text-black font-normal border-b-2 border-brand-orange">como você faz</span>."
+              </p>
+              <div className="mt-auto flex items-center justify-between gap-4 pt-8">
+                <Link to="/sobre" className="font-mono text-xs uppercase border-b border-black pb-1 hover:text-brand-orange hover:border-brand-orange transition-colors">
+                  Ler Manifesto Completo
+                </Link>
+                <span className="font-mono text-xs text-gray-400">EST. 2017</span>
+              </div>
+            </div>
+          </div>
+        </ScrollSection>
+      </section>
 
       {/* 3. CLASSES & METHOD (Services) */}
       <ScrollSection className="grid grid-cols-1 landscape:grid-cols-3 md:grid-cols-3 border-b border-lines">
@@ -132,15 +137,26 @@ export const Home: React.FC = () => {
       <div className="grid grid-cols-1 landscape:grid-cols-2 lg:grid-cols-2 border-b border-lines">
         
         {/* Shop Teaser */}
-        <ScrollSection className="border-b lg:border-b-0 landscape:border-b-0 lg:border-r landscape:border-r border-lines p-8 md:p-16 flex flex-col justify-between bg-gray-50 group hover:bg-white transition-colors">
+        <ScrollSection className="border-b lg:border-b-0 landscape:border-b-0 lg:border-r landscape:border-r border-lines p-8 md:p-16 flex flex-col justify-between bg-gray-50 group">
            <div className="flex justify-between items-start mb-8">
               <span className="font-mono text-xs text-gray-400 uppercase tracking-widest">04 — Shop</span>
               <span className="bg-brand-orange text-white text-[10px] font-bold px-2 py-1 uppercase rounded-full">New Drop</span>
            </div>
            
            <div className="flex-1 flex items-center justify-center py-8">
-              <div className="relative w-48 h-48 bg-white border border-lines shadow-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 rounded-full">
-                 <span className="material-icons text-6xl text-gray-300 group-hover:text-black transition-colors md-64">checkroom</span>
+              <div className="relative w-56 h-56 bg-white border border-lines shadow-sm overflow-hidden flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 rounded-full">
+                 <AnimatePresence mode="sync">
+                   <motion.img
+                     key={shopImages[activeShopImage]}
+                     src={shopImages[activeShopImage]}
+                     alt="Produto em destaque"
+                     className="absolute inset-0 w-full h-full object-cover"
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     exit={{ opacity: 0 }}
+                     transition={{ duration: 1.2, ease: "easeInOut" }}
+                   />
+                 </AnimatePresence>
               </div>
            </div>
 
@@ -158,16 +174,12 @@ export const Home: React.FC = () => {
              <span className="font-mono text-xs text-gray-400 uppercase tracking-widest">05 — Journal</span>
           </div>
           <div className="flex-1">
-             {[
-               { date: "02 OUT", title: "Workshop Contrologia Avançada", cat: "Evento" },
-               { date: "15 SET", title: "Respiração Torácica", cat: "Artigo" },
-               { date: "12 AGO", title: "História do Reformer", cat: "História" }
-             ].map((post, i) => (
-               <Link to="/journal" key={i} className="group flex items-center p-8 border-b border-lines last:border-b-0 hover:bg-smoke transition-colors">
-                  <div className="w-16 md:w-24 font-mono text-xs text-gray-400 group-hover:text-brand-orange">{post.date}</div>
+             {BLOG_POSTS.slice(0, 3).map((post) => (
+               <Link to={`/journal/${post.id}`} key={post.id} className="group flex items-center p-8 border-b border-lines last:border-b-0 hover:bg-smoke transition-colors">
+                  <div className="w-20 md:w-28 font-mono text-xs text-gray-400 group-hover:text-brand-orange">{post.date}</div>
                   <div className="flex-1">
-                    <span className="block font-mono text-[10px] text-gray-400 uppercase mb-1">{post.cat}</span>
-                    <h4 className="font-sans text-lg md:text-xl font-medium leading-none group-hover:underline decoration-1 underline-offset-4">{post.title}</h4>
+                    <span className="block font-mono text-[10px] text-gray-400 uppercase mb-1">{post.category}</span>
+                    <h4 className="font-sans text-lg md:text-xl font-medium leading-none group-hover:underline decoration-1 underline-offset-4 line-clamp-1">{post.title}</h4>
                   </div>
                   <span className="material-icons opacity-0 group-hover:opacity-100 transition-opacity text-brand-orange">arrow_forward</span>
                </Link>

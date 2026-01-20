@@ -94,7 +94,18 @@ export const Academy: React.FC = () => {
          </div>
       </section>
 
-      {/* 3. CURRICULUM MODULES */}
+      {/* 3. FULL-WIDTH IMAGE */}
+      <section className="w-full border-b border-zinc-800">
+         <div className="relative w-full aspect-video overflow-hidden group">
+            <img
+              src={ASSETS.ACADEMY_GALLERY[2]}
+              alt="Academy highlight"
+              className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700"
+            />
+         </div>
+      </section>
+
+      {/* 4. CURRICULUM MODULES */}
       <section className="p-8 md:p-20 border-b border-zinc-800">
          <ScrollReveal>
            <h2 className="text-4xl md:text-5xl text-white font-sans font-bold tracking-tight mb-16 text-center">
@@ -125,9 +136,9 @@ export const Academy: React.FC = () => {
          </div>
       </section>
 
-      {/* 4. GALLERY GRID */}
-      <section className="grid grid-cols-2 md:grid-cols-4 h-[40vh] md:h-[60vh] border-b border-zinc-800">
-         {ASSETS.ACADEMY_GALLERY.map((src, idx) => (
+      {/* 5. GALLERY GRID */}
+      <section className="grid grid-cols-2 md:grid-cols-3 h-[40vh] md:h-[60vh] border-b border-zinc-800">
+         {ASSETS.ACADEMY_GALLERY.filter((_, idx) => idx !== 2).map((src, idx) => (
             <motion.div 
                key={idx}
                initial={{ opacity: 0 }}
@@ -145,7 +156,7 @@ export const Academy: React.FC = () => {
          ))}
       </section>
 
-      {/* 5. SCHEDULE & CTA */}
+      {/* 6. SCHEDULE & CTA */}
       <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
          
          {/* Schedule */}
