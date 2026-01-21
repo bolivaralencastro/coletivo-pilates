@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coletivo Pilates OG Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --brand-orange: #E35205;
+        --smoke: #F4F4F4;
+        --lines: #E5E5E5;
+        --ink: #111111;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #fafafa;
+        font-family: "Inter", sans-serif;
+        color: var(--ink);
+        gap: 20px;
+        padding: 24px;
+      }
+      .controls {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .select {
+        border: 1px solid var(--lines);
+        padding: 10px 12px;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        background: #fff;
+      }
+      .btn {
+        background: var(--ink);
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        cursor: pointer;
+      }
+      .note {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        color: #666;
+      }
+      .frame {
+        width: 1200px;
+        height: 630px;
+        background: #fff;
+        border: 1px solid var(--lines);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+      .og-card {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: var(--sidebar-width, 280px) 1fr;
+      }
+      .layout-vertical .og-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: var(--hero-height, 900px) var(--lower-height, 420px) var(--footer-height, 180px);
+      }
+      .sidebar {
+        border-right: 1px solid var(--lines);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .layout-vertical .sidebar {
+        border-right: none;
+        border-top: 1px solid var(--lines);
+        flex-direction: column;
+        grid-row: 3;
+        padding: 12px 24px;
+        gap: 12px;
+        justify-content: center;
+      }
+      .logo-box {
+        height: var(--logo-size, 280px);
+        border-bottom: 1px solid var(--lines);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .layout-vertical .logo-box {
+        display: none;
+      }
+      .logo-box img {
+        width: auto;
+        height: auto;
+        max-width: 80%;
+        max-height: 80%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+      }
+      .nav {
+        height: var(--nav-height, 210px);
+        padding: 18px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #6b6b6b;
+        flex: 0 0 auto;
+      }
+      .layout-twitter .nav {
+        font-size: 9px;
+        gap: 8px;
+      }
+      .layout-vertical .nav {
+        height: var(--nav-height, 140px);
+        flex: 0 0 auto;
+        padding: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px 16px;
+        border-top: none;
+        align-content: center;
+      }
+      .nav span:first-child {
+        color: var(--ink);
+        border-left: 2px solid var(--brand-orange);
+        padding-left: 8px;
+        font-weight: 700;
+      }
+      .address {
+        margin-top: auto;
+        height: var(--address-height, 140px);
+        padding: 16px 20px 24px;
+        border-top: 1px solid var(--lines);
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        line-height: 1.35;
+        color: #6b6b6b;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .layout-vertical .address {
+        height: auto;
+        width: 100%;
+        border-top: none;
+        border-left: none;
+        padding: 0;
+        justify-content: flex-start;
+      }
+      .address .address-line--compact {
+        display: none;
+      }
+      .layout-vertical .address .address-line--full {
+        display: none;
+      }
+      .layout-vertical .address .address-line--compact {
+        display: block;
+      }
+      .address strong {
+        display: block;
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        color: #9b9b9b;
+      }
+      .address-line {
+        display: block;
+      }
+      .cta {
+        margin-top: 12px;
+        background: var(--brand-orange);
+        color: #fff;
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+      }
+      .layout-vertical .content {
+        grid-row: 1 / span 2;
+      }
+      .hero {
+        height: var(--hero-height, 390px);
+        border-bottom: 1px solid var(--lines);
+        background: #ddd;
+        position: relative;
+        overflow: hidden;
+        background-image: url("./public/hero/coletivo-pilates-hero-equipe.avif");
+        background-size: cover;
+        background-position: center;
+      }
+      .layout-vertical .hero {
+        height: var(--hero-height, 666px);
+        aspect-ratio: auto;
+      }
+      .hero img {
+        display: none;
+      }
+      .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .lower {
+        height: var(--lower-height, 240px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid var(--lines);
+      }
+      .layout-vertical .lower {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .lower > div {
+        padding: 24px 28px;
+      }
+      .lower-movement {
+        border-right: 1px solid var(--lines);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .lower-quote {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .layout-vertical .lower-quote {
+        justify-content: space-between;
+      }
+      .lower-logo {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid var(--lines);
+      }
+      .lower-logo img {
+        width: auto;
+        height: auto;
+        max-width: 80%;
+        max-height: 80%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+      }
+      .layout-vertical .lower-logo {
+        display: flex;
+      }
+      .layout-vertical .lower-movement {
+        border-right: 1px solid var(--lines);
+      }
+      .label {
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #9b9b9b;
+      }
+      .title {
+        font-size: 42px;
+        line-height: 1.05;
+        margin: 16px 0 12px;
+      }
+      .quote {
+        font-family: "Inter", sans-serif;
+        font-style: italic;
+        font-size: 18px;
+        color: #555;
+        margin-top: 18px;
+      }
+      .layout-vertical .quote {
+        font-size: 22px;
+        margin: auto 0;
+      }
+      .highlight {
+        border-bottom: 2px solid var(--brand-orange);
+        color: #111;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        color: #9b9b9b;
+        margin-top: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      <select class="select" id="sizeSelect" aria-label="Selecionar tamanho">
+        <option value="1200x630" selected>1200x630 (Facebook/WhatsApp)</option>
+        <option value="1200x627">1200x627 (LinkedIn)</option>
+        <option value="1024x512">1024x512 (Twitter/X)</option>
+        <option value="1000x1500">1000x1500 (Pinterest)</option>
+      </select>
+      <button class="btn" id="downloadBtn">Salvar PNG</button>
+      <span class="note">Abra via servidor local (ex.: `python -m http.server`).</span>
+    </div>
+    <span class="note" id="status"></span>
+
+    <div class="frame" id="frame">
+      <div class="og-card" id="og-card">
+        <aside class="sidebar">
+          <div class="logo-box">
+            <img src="./public/coletivo-pilates.png" alt="Coletivo Pilates" crossOrigin="anonymous" />
+          </div>
+          <div class="nav">
+            <span>HOME</span>
+            <span>O COLETIVO</span>
+            <span>AULAS &amp; METODO</span>
+            <span>TWR ACADEMY</span>
+            <span>JOURNAL</span>
+            <span>SHOP</span>
+          </div>
+          <div class="address">
+            <strong>Como chegar:</strong>
+            <span class="address-line address-line--full">Sapphire Studios &amp; Galery</span>
+            <span class="address-line address-line--full">R. Joao Pio Duarte Silva, 1350</span>
+            <span class="address-line address-line--full">Loja 06 - Corrego Grande</span>
+            <span class="address-line address-line--full">Florianopolis - SC, 88034-001</span>
+            <span class="address-line address-line--compact">Sapphire Studios &amp; Galery · R. Joao Pio Duarte Silva, 1350 · Loja 06 - Corrego Grande · Florianopolis - SC, 88034-001</span>
+          </div>
+        </aside>
+        <section class="content">
+          <div class="hero">
+            <img src="./public/hero/coletivo-pilates-hero-equipe.avif" alt="Equipe Coletivo Pilates" crossOrigin="anonymous" />
+          </div>
+          <div class="lower">
+            <div class="lower-logo">
+              <img src="./public/coletivo-pilates.png" alt="Coletivo Pilates" crossOrigin="anonymous" />
+            </div>
+            <div class="lower-movement">
+              <div class="label">Florianopolis — SC</div>
+              <div class="title">Movimento<br />Consciente.</div>
+              <div class="label">Comecar agora</div>
+            </div>
+            <div class="lower-quote">
+              <div class="label">01 — O Coletivo</div>
+              <div class="quote">
+                "Nao e apenas sobre fazer o exercicio.<br />
+                E sobre <span class="highlight">como voce faz</span>."
+              </div>
+              <div class="footer">
+                <span>Ler Manifesto Completo</span>
+                <span>EST. 2017</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+      const button = document.getElementById('downloadBtn');
+      const target = document.getElementById('og-card');
+      const frame = document.getElementById('frame');
+      const select = document.getElementById('sizeSelect');
+      const status = document.getElementById('status');
+
+      const presets = {
+        "1200x630": { width: 1200, height: 630, sidebar: 280, logo: 280, nav: 210, address: 140, hero: 390, lower: 240, footer: 0, layout: "default" },
+        "1200x627": { width: 1200, height: 627, sidebar: 280, logo: 280, nav: 207, address: 140, hero: 387, lower: 240, footer: 0, layout: "default" },
+        "1024x512": { width: 1024, height: 512, sidebar: 240, logo: 240, nav: 150, address: 122, hero: 320, lower: 192, footer: 0, layout: "twitter" },
+        "1000x1500": { width: 1000, height: 1500, sidebar: 0, logo: 0, nav: 70, address: 0, hero: 666, lower: 677, footer: 157, layout: "vertical" },
+      };
+
+      const applyPreset = (value) => {
+        const preset = presets[value];
+        frame.style.width = `${preset.width}px`;
+        frame.style.height = `${preset.height}px`;
+        frame.style.setProperty('--sidebar-width', `${preset.sidebar}px`);
+        frame.style.setProperty('--logo-size', `${preset.logo}px`);
+        frame.style.setProperty('--nav-height', `${preset.nav}px`);
+        frame.style.setProperty('--address-height', `${preset.address}px`);
+        frame.style.setProperty('--hero-height', `${preset.hero}px`);
+        frame.style.setProperty('--lower-height', `${preset.lower}px`);
+        frame.style.setProperty('--footer-height', `${preset.footer}px`);
+        frame.classList.toggle('layout-vertical', preset.layout === 'vertical');
+        frame.classList.toggle('layout-twitter', preset.layout === 'twitter');
+      };
+
+      applyPreset(select.value);
+      select.addEventListener('change', (event) => applyPreset(event.target.value));
+
+      button.addEventListener('click', async () => {
+        status.textContent = '';
+        if (typeof html2canvas === 'undefined') {
+          status.textContent = 'Erro: html2canvas não carregou. Verifique sua conexão.';
+          return;
+        }
+        try {
+          const size = select.value;
+          const canvas = await html2canvas(target, {
+            backgroundColor: '#ffffff',
+            scale: 1,
+            useCORS: true,
+            allowTaint: false,
+          });
+          const link = document.createElement('a');
+          link.download = `og-coletivo-pilates-${size}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        } catch (err) {
+          status.textContent = 'Falha ao exportar. Abra via servidor local e tente novamente.';
+        }
+      });
+    </script>
+  </body>
+</html>
