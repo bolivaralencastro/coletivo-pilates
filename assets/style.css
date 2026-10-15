@@ -466,9 +466,9 @@ html{background-image:url(grain.webp);background-size:128px 128px}
   transition:opacity 1s ease,transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform}
 .dz.ready .ph-in>img{opacity:1}
 .ph .ph-in>img{opacity:1}
-.door:hover .ph-in>img,.team figure:hover .ph-in>img,.post:hover .ph-in>img,.prod:hover .ph-in>img{transform:scale(1.08) rotate(1.2deg)}
+.door:hover .ph-in>img,.team figure:hover .ph-in>img,.post:hover .ph-in>img,.prod:hover .ph-in>img{transform:scale(1.035) rotate(.35deg)}
 .door:hover img,.prod:hover .ph img{transform:none}
-.prod:hover .ph-in>img{transform:scale(1.08) rotate(1.2deg)}
+.prod:hover .ph-in>img{transform:scale(1.035) rotate(.35deg)}
 @media (prefers-reduced-motion:reduce){.ph-in>img{transition:opacity .01s}.door:hover .ph-in>img,.team figure:hover .ph-in>img,.post:hover .ph-in>img,.prod:hover .ph-in>img{transform:none}}
 
 /* linha dupla: a faixa da citacao ja fecha com 1px; as portas nao repetem a borda superior */
@@ -1231,6 +1231,15 @@ footer .copy{padding:16px var(--pad)}
   .door .tx .hd .ib{width:46px;height:46px}
 }
 .door .tx .hd .num{order:0}.door .tx .hd h2{order:1!important;flex:1 1 auto;min-width:0}.door .tx .hd .ib{order:2;margin-left:auto}
+/* desktop: o controle de cada porta fica centralizado no bloco de texto,
+   mantendo titulo e descricao alinhados a esquerda */
+@media (min-width:821px){
+  .door .tx{position:relative;padding-right:clamp(88px,8vw,132px)}
+  .door .tx .hd{position:static}
+  .door .tx .hd .ib{position:absolute;right:clamp(24px,3vw,48px);top:50%;margin:0;transform:translateY(-50%)!important}
+  .door:hover .tx .hd .ib{transform:translateY(calc(-50% - 1px))!important}
+  .door:active .tx .hd .ib{transform:translateY(calc(-50% + var(--lift)))!important}
+}
 /* Academy: malha do menu quase sumindo */
 .theme-dark .menu,.theme-dark .m-overlay{
   background-image:linear-gradient(to right,rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.028) 1px,transparent 1px)!important;
@@ -1246,6 +1255,12 @@ body:not(.theme-dark) .menu,body:not(.theme-dark) .m-overlay{
 .door .tx .hd{position:relative;z-index:3}
 .door .tx .hd .ib{position:relative;z-index:3}
 .door .im.dz{position:relative;z-index:1}
+@media (min-width:821px){
+  .door .tx .hd{position:static}
+  .door .tx .hd .ib{position:absolute;right:clamp(24px,3vw,48px);top:50%;margin:0;transform:translateY(-50%)!important}
+  .door:hover .tx .hd .ib{transform:translateY(calc(-50% - 1px))!important}
+  .door:active .tx .hd .ib{transform:translateY(calc(-50% + var(--lift)))!important}
+}
 /* cards: mesmo fundo no cabecalho e na area da imagem; sem vao entre manifesto e o primeiro card */
 @media (max-width:820px){
   .door .im.dz{background-color:transparent!important;background-image:none!important}
